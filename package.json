@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.18.3",
-    "hono": "^4.6.16"
+    "hono": "^4.6.16",
+    "stoker": "^1.4.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.12.2",
