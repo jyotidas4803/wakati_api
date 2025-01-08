@@ -1,5 +1,6 @@
 1]installing bun  (curl -fsSL https://bun.sh/install | bash)
 2]install hono (bun create hono@latest .)
-3] eslint (pnpm dlx @antfu/eslint-config@latest)
+3] eslint (search for eslint/antfu) (pnpm dlx @antfu/eslint-config@latest)
 4]  "lint": "eslint .",
     "lint:fix": "eslint . --fix",   add this in script of package.json file
+ 5] adding the hono   bun add @hono/zod-openai
