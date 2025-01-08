@@ -1,1 +1,8 @@
-# wakati_api
+```
+npm install
+npm run dev
+```
+
+```
+npm run deploy
+```
