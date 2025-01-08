@@ -5,3 +5,4 @@
     "lint:fix": "eslint . --fix",   add this in script of package.json file
  5] adding the hono   bun add @hono/zod-openai
  6] stoker (bun add stoker)
+ 7] added hono-pino (bun add hono-pino pino)
