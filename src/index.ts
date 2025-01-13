@@ -1,15 +1,13 @@
-import createApp from "@/lib/create-app"
-import configureOpenAI from "@/lib/configure-openai"
+import { createApp } from '@/lib/create-app'
+import configureOpenAPI from './lib/configure-openapi'
+import index from '@/routes/index.routes'
 
 const app = createApp()
-configureOpenAI(app)
+configureOpenAPI(app)
 
-app.get('/', (c) => {
-  return c.text('Hello Hono!')
+const routes=[index]
+routes.forEach(route=>{
+  app.route('/',route)
 })
 
-app.get('/error',(c) => {
-  throw new Error('Custom 404 Message')
-})
-
-export default app;
+export default app
