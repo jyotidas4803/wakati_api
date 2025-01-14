@@ -11,8 +11,6 @@ export function createRouter(){
 export function createApp(){
     const app = createRouter()
 
-
-
 app.use(logger())
 app.use(serveEmojiFavicon(''))
 app.notFound(notFound)
