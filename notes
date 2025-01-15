@@ -15,10 +15,14 @@ zod k wjwh se ham validate kr payege
 AI
 URL
 Analyze
+file
 
 # in teeno k liye contrat and handler banana hai
-# readability-scores ----> isko install krna hai bun
+# pull request 
 
-
-
-9
+1] url folder
+2] then check that the url is valid or not
+3] then respond with the response
+4] the read the url through the fetch api
+5] then parse the response
+6] then return the title and the description
