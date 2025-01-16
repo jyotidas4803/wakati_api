@@ -1,21 +1,18 @@
-import { apiReference } from "@scalar/hono-api-reference"
-import { OpenAPIHono } from "@hono/zod-openapi"
-import packageJSON from "../../package.json" assert { type: "json" }
+import { OpenAPIHono } from '@hono/zod-openapi'
+import { notFound, onError } from "stoker/middlewares"
+import logger from "../middleware/logger"
 
-export default function configureOpenAPI(app: OpenAPIHono) {
-    app.doc("/schema", {
-        openapi: "3.0.0",
-        info: {
-            title: "Wakati API",
-            description: "Text Intelligence Platform",
-            version: packageJSON.version,
-        },
-    })
-    app.get("/",
-        apiReference({
-            theme: "elysiajs",
-            spec: {
-                url: "/schema"
-            }
-        }))
+
+export function createRouter(){
+    return new OpenAPIHono({ strict: false })
+}
+
+export default function createApp() {
+    const app = createRouter()
+    app.use(logger())
+    app.notFound(notFound)
+    app.onError(onError)
+
+    return app
+
 }
