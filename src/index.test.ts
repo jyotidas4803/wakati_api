@@ -22,5 +22,6 @@ describe('Example', () => {
     const json = await res.json();
     expect(json).toHaveProperty("ari");
     expect(json).toMatchObject({wordCount:5});
-    });
-  });
+    })
+  })
+  
