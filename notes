@@ -6,7 +6,7 @@
  5] adding the hono   bun add @hono/zod-openai
  6] stoker (bun add stoker)
  7] added hono-pino (bun add hono-pino pino)
- 8] f-a0lsKXf6cTpqnjwGeoFjLtadW6Oq4GWSuEAyTp  -- token from clodflare
+ 8] 
 
 
 openapi - structure using scalar
@@ -19,10 +19,18 @@ file
 
 # in teeno k liye contrat and handler banana hai
 # pull request 
-
+****URL is valid or not****
 1] url folder
 2] then check that the url is valid or not
 3] then respond with the response
 4] the read the url through the fetch api
 5] then parse the response
 6] then return the title and the description
+
+
+****we are creating a new file****
+1] create a new file
+2] create a new function
+3] create a new route
+4] create a new controller
+5] 

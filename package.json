@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "lint": "eslint .",
+    "test": "vitest",
     "lint:fix": "eslint . --fix",
     "deploy": "wrangler deploy --minify"
   },
@@ -21,6 +22,7 @@
     "@antfu/eslint-config": "^3.12.2",
     "@cloudflare/workers-types": "^4.20241218.0",
     "eslint": "^9.17.0",
-    "wrangler": "^3.96.0"
+    "vitest": "^2.1.8",
+    "wrangler": "^3.102.0"
   }
 }
