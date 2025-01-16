@@ -1,26 +1,21 @@
-import { OpenAPIHono } from "@hono/zod-openapi";
-import { apiReference } from "@scalar/hono-api-reference";
-import packageJson from "../../package.json";
+import { apiReference } from "@scalar/hono-api-reference"
+import { OpenAPIHono } from "@hono/zod-openapi"
+import packageJSON from "../../package.json" assert { type: "json" }
 
-export default function configureOpenAPI(app:OpenAPIHono){
-    app.doc("/doc",{
-        openapi:"3.0.0",
-        info:{
-            title:"wakati-api",
-            version:packageJson.version,
-            description:"Text Intelligence API",
+export default function configureOpenAPI(app: OpenAPIHono) {
+    app.doc("/schema", {
+        openapi: "3.0.0",
+        info: {
+            title: "Wakati API",
+            description: "Text Intelligence Platform",
+            version: packageJSON.version,
         },
     })
-    app.get(
-        '/reference',
+    app.get("/",
         apiReference({
-            theme:"bluePlanet",
-            spec:{
-                url:'/doc',
-            },
- } ),
-)
+            theme: "elysiajs",
+            spec: {
+                url: "/schema"
+            }
+        }))
 }
-
-
-// 
