@@ -8,11 +8,13 @@
     "deploy": "wrangler deploy --minify"
   },
   "dependencies": {
+    "@hono-rate-limiter/cloudflare": "^0.2.2",
     "@hono/zod-openapi": "^0.18.3",
     "@scalar/hono-api-reference": "^0.5.165",
     "cheerio": "^1.0.0",
     "hono": "^4.6.16",
     "hono-pino": "^0.7.0",
+    "hono-rate-limiter": "0.1.0",
     "pino": "^9.6.0",
     "readability-scores": "^1.0.8",
     "stoker": "^1.4.2"

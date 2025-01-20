@@ -26,3 +26,5 @@ file
 4] the read the url through the fetch api
 5] then parse the response
 6] then return the title and the description
+
+ bun add @hono-rate-limiter/cloudflare
