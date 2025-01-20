@@ -1,7 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import * as HttpStatusCodes from "stoker/http-status-codes";
 
-export const analyze = createRoute({
+export const ai = createRoute({
   path: "/analyze",
   method: "post",
   request: {
@@ -9,7 +9,7 @@ export const analyze = createRoute({
       content: {
         "application/json": {
           schema: z.object({
-            text: z.string().min(1),
+            prompt: z.string().min(1),
           }),
         },
       },
@@ -35,4 +35,4 @@ export const analyze = createRoute({
   },
 });
 
-export type AnalyzeRoute = typeof analyze;
+export type AiRoute = typeof ai;

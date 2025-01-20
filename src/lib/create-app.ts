@@ -1,20 +1,19 @@
+
 import { OpenAPIHono } from '@hono/zod-openapi'
-import { notFound, onError, serveEmojiFavicon } from 'stoker/middlewares'
-import logger from '@/lib/logger'
+import { notFound, onError } from "stoker/middlewares"
+import logger from "../middleware/logger"
 
 
 export function createRouter(){
-    return new OpenAPIHono({
-        strict:false,
- } )
+    return new OpenAPIHono({ strict: false })
 }
-export function createApp(){
+
+export default function createApp() {
     const app = createRouter()
+    app.use(logger())
+    app.notFound(notFound)
+    app.onError(onError)
 
-app.use(logger())
-app.use(serveEmojiFavicon(''))
-app.notFound(notFound)
-app.onError(onError)
+    return app
 
-return app
 }
