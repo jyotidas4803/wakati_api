@@ -10,10 +10,18 @@ export const ai: RouteHandler<AiRoute> = async (c: Context) => {
     const {prompt} = body
     // const result = evaluate(body.prompt)
 
-    const respone = c.env.AI.run("@cf/meta/llama-3.1-8b-instruct",{
-        prompt:"Tell me a joke",
-     
-    })
+    const respone =await c.env.AI.run("@cf/meta/llama-3.1-8b-instruct-fast",{
+       message:[{
+        role:"system",
+        content:"You are a helpful assistant that answers questions based on the provided context."
+       },
+       {
+        role:"user",
+        content:prompt
+       
+       },
+    ]
+    });
 
     return c.json(respone)
 
