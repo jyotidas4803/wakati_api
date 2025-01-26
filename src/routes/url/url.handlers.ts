@@ -1,32 +1,48 @@
-import * as HttpStatusCodes from "stoker/http-status-codes"
-import { AnalyzeRoute } from "./url.routes"
-import { Context } from "hono"
-import { RouteHandler } from "@hono/zod-openapi"
-import { parse } from "@/lib/parse"
-import { evaluate } from "@/lib/evaluate"
+import * as HttpStatusCodes from "stoker/http-status-codes";
+import { AnalyzeRoute } from "./url.routes";
+import { Context } from "hono";
+import { RouteHandler } from "@hono/zod-openapi";
+import { parse } from "@/lib/parse";
+import { evaluate } from "@/lib/evaluate";
 
 export const url: RouteHandler<AnalyzeRoute> = async (c: Context) => {
-    const body = await c.req.json()
+    const body = await c.req.json();
 
-    const res = await fetch(body.url)
+    // Fetch the URL content and headers
+    const res = await fetch(body.url);
 
-    const data = await res.text()
+    if (!res.ok) {
+        return c.json({ error: "Failed to fetch the URL" }, HttpStatusCodes.BAD_REQUEST);
+    }
 
-    const { p, title } = parse(data)
+    const data = await res.text();
+    const headers = Array.from(res.headers.entries()).reduce(
+        (acc, [key, value]) => ({ ...acc, [key]: value }),
+        {}
+    );
 
-    const result = evaluate(p)
+    // Parse the HTML content
+    const { p, title } = parse(data);
+
+    // Evaluate the content
+    const result = evaluate(p);
+
+    // AI Analysis: Pass headers and content for SEO analysis
+    const prompt = `Analyze the following webpage for SEO. Here are the headers:
+    ${JSON.stringify(headers, null, 2)}
+
+    Here is the content:
+    ${p}`;
 
     const response = await c.env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
-        // prompt: prompt,
-    
         messages: [
-          {
-            role: "user",
-            content: `Summarize this for me :${p}`,
-          },
+            {
+                role: "user",
+                content: prompt,
+            },
         ],
-      });
+    });
 
-    return c.json({ response, result, title })
-
-}
+    // Respond with SEO analysis score, title, and evaluation
+    return c.json({ response, result, title, headers });
+};
