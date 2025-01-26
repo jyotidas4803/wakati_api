@@ -16,6 +16,17 @@ export const url: RouteHandler<AnalyzeRoute> = async (c: Context) => {
 
     const result = evaluate(p)
 
-    return c.json({ result, title })
+    const response = await c.env.AI.run("@cf/meta/llama-3.1-8b-instruct", {
+        // prompt: prompt,
+    
+        messages: [
+          {
+            role: "user",
+            content: `Summarize this for me :${p}`,
+          },
+        ],
+      });
+
+    return c.json({ response, result, title })
 
 }

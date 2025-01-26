@@ -4,6 +4,8 @@ import * as HttpStatusCodes from "stoker/http-status-codes";
 export const url = createRoute({
   path: "/url",
   method: "post",
+  tags: ["Url"],
+  description: "analyze a webpage by extracting key information such as title, metadata, keywords, and content summary. .",
   request: {
     body: {
       content: {

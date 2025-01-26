@@ -13,7 +13,10 @@ export const analyze: RouteHandler<AnalyzeRoute> = async (c: Context) => {
     }
     const result = evaluate(body.text)
 
+    const sentiment = await c.env.AI.run("@cf/huggingface/distilbert-sst-2-int8", {
+        text: body.text,
+    })
 
-    return c.json(result)
+    return c.json( {sentiment,result})
 
 }
